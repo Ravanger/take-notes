@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.35",
+    "framer-motion": "^2.9.4",
+    "idb": "^5.0.7",
     "next": "9.5.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "@emotion/babel-preset-css-prop": "^10.0.27",
     "@types/node": "^14.11.5",
     "@types/react": "^16.9.51",
     "typescript": "^4.0.3"
