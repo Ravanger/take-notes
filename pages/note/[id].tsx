@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import { get } from "idb-keyval"
 import { css } from "@emotion/core"
+import { getCardDataById } from "@util/cardUtil"
 
 const Note = () => {
   const router = useRouter()
@@ -10,12 +10,12 @@ const Note = () => {
   const [cardData, setCardData] = useState<CardDataType | undefined>(undefined)
   useEffect(() => {
     if (typeof id !== "undefined") {
-      getCardData(id)
+      getNoteData(id)
     }
   }, [id])
 
-  const getCardData = async (id: string | string[]) => {
-    const cardData: CardDataType = await get(id)
+  const getNoteData = async (id: string | string[]) => {
+    const cardData: CardDataType = await getCardDataById(id)
     setCardData(cardData)
   }
 
