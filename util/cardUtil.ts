@@ -5,7 +5,7 @@ export const getCardDataById = async (id: string | string[]) => {
   return cardData
 }
 
-export const getCardDataArray = async () => {
+export const getAllCardData = async () => {
   const ids = (await keys()) as string[]
   let cardDataArray: CardDataType[] = []
 

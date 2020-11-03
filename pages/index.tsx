@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { getCardDataArray } from "@util/cardUtil"
+import { useEffect, useState } from "react"
+import { getAllCardData } from "@util/cardUtil"
 
 import Card from "@components/Card"
 
@@ -11,7 +11,7 @@ const Home = () => {
   }, [])
 
   const updateCardData = async () => {
-    const cardDataArray = await getCardDataArray()
+    const cardDataArray = await getAllCardData()
     setCardData(cardDataArray)
   }
 
