@@ -6,6 +6,11 @@ import { getAllCardData } from "@util/cardUtil"
 import Card from "@components/Card"
 import Modal from "@components/Modal"
 
+// import { cardData } from "@util/cardData"
+// import { setAllCardData } from "@util/cardUtil"
+
+// setAllCardData(cardData)
+
 const Home = () => {
   const [cardData, setCardData] = useState<CardDataType[]>([])
   const [selectedCard, setSelectedCard] = useState<string>("")
