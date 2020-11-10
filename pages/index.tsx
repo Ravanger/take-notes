@@ -25,8 +25,6 @@ const Home = () => {
     }
   }
 
-  console.log(selectedCard)
-
   return (
     cardData.length > 0 && (
       <div
