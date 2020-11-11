@@ -4,6 +4,7 @@ export const ModalMain = (backgroundColor: string) => css`
   width: 80%;
   height: 80%;
   position: absolute;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
