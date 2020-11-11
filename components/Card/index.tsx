@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import { CardMain } from "./styles"
 
 type CardProps = {
@@ -9,9 +10,15 @@ type CardProps = {
 
 const Card = (props: CardProps) => {
   return (
-    <div css={CardMain(props.backgroundColor)} onClick={props.onClick}>
+    <motion.div
+      layout
+      css={CardMain(props.backgroundColor)}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      onClick={props.onClick}
+    >
       {props.title}
-    </div>
+    </motion.div>
   )
 }
 
