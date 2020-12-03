@@ -24,12 +24,6 @@ const Home = () => {
     setCardData(cardDataArray)
   }
 
-  const updateSelectedCard = (id: string) => {
-    if (selectedCard !== id) {
-      setSelectedCard(id)
-    }
-  }
-
   return (
     cardData.length > 0 && (
       <div
@@ -45,14 +39,14 @@ const Home = () => {
                 id={card.id}
                 title={card.title}
                 backgroundColor={card.backgroundColor}
-                onClick={() => updateSelectedCard(card.id)}
+                onClick={() => setSelectedCard(card.id)}
               />
               <Modal
                 isVisible={selectedCard === card.id}
                 title={card.title}
                 id={card.id}
                 backgroundColor={card.backgroundColor}
-                closeModal={() => updateSelectedCard("")}
+                closeModal={() => setSelectedCard("")}
               />
             </Fragment>
           )
