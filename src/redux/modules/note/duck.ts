@@ -35,10 +35,10 @@ export const reducer = createReducer(initialState, (builder) => {
     state.notes.push(note)
   })
   builder.addCase(saveNote, (state, action: PayloadAction<Note>) => {
-    state.notes = save(state, action.payload)
+    state.notes = update(state, action.payload)
   })
   builder.addCase(closeNote, (state, action: PayloadAction<Note>) => {
-    state.notes = save(state, action.payload)
+    state.notes = update(state, action.payload)
   })
   builder.addCase(deleteNote, (state, action: PayloadAction<string>) => {
     const deleteId = action.payload
@@ -46,11 +46,7 @@ export const reducer = createReducer(initialState, (builder) => {
   })
 })
 
-const save = (state: NoteState, payload: Note) => {
-  const saveIndex = state.notes.findIndex((note) => note.id === payload.id)
-  const notesArray = [...state.notes]
-  notesArray[saveIndex] = payload
-  return notesArray
-}
+const update = (state: NoteState, payload: Note) =>
+  state.notes.map((note) => (note.id === payload.id ? payload : note))
 
 export default reducer
