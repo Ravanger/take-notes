@@ -1,18 +1,18 @@
 import { createAction, createReducer, PayloadAction } from "@reduxjs/toolkit"
-import {
-  LOAD_NOTES,
-  OPEN_NOTE,
-  ADD_NOTE,
-  SAVE_NOTE,
-  CLOSE_NOTE,
-  DELETE_NOTE,
-} from "./types"
 import { NoteState, Note } from "./types"
 
 // FOR TESTING
 import { noteData } from "./data/noteData"
 const initialState: NoteState = noteData
 // ~FOR TESTING
+
+// Types
+const LOAD_NOTES = "my-app/note/LOAD_NOTES"
+const OPEN_NOTE = "my-app/note/OPEN_NOTE"
+const ADD_NOTE = "my-app/note/ADD_NOTE"
+const SAVE_NOTE = "my-app/note/SAVE_NOTE"
+const CLOSE_NOTE = "my-app/note/CLOSE_NOTE"
+const DELETE_NOTE = "my-app/note/DELETE_NOTE"
 
 // const initialState: NoteState = {
 //   notes: [],
