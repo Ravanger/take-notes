@@ -7,49 +7,11 @@ export const DELETE_NOTE = "my-app/note/DELETE_NOTE"
 
 export interface Note {
   id: string
+  title: string
   text?: string
+  backgroundColor?: string
 }
 
 export interface NoteState {
   notes: Note[]
 }
-
-// Note actions
-interface LoadNotesAction {
-  type: typeof LOAD_NOTES
-}
-
-interface OpenNoteAction {
-  type: typeof OPEN_NOTE
-  payload: Note
-}
-
-interface AddNoteAction {
-  type: typeof ADD_NOTE
-  payload: Note
-}
-
-interface SaveNoteAction {
-  type: typeof SAVE_NOTE
-  payload: Note
-}
-
-interface CloseNoteAction {
-  type: typeof CLOSE_NOTE
-  payload: Note
-}
-
-interface DeleteNoteAction {
-  type: typeof DELETE_NOTE
-  meta: {
-    id: string
-  }
-}
-
-export type NoteActionTypes =
-  | LoadNotesAction
-  | OpenNoteAction
-  | AddNoteAction
-  | SaveNoteAction
-  | CloseNoteAction
-  | DeleteNoteAction

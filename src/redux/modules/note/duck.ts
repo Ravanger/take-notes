@@ -1,3 +1,4 @@
+import { createAction, createReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   LOAD_NOTES,
   OPEN_NOTE,
@@ -6,60 +7,50 @@ import {
   CLOSE_NOTE,
   DELETE_NOTE,
 } from "./types"
-import { NoteState, Note, NoteActionTypes } from "./types"
+import { NoteState, Note } from "./types"
 
-const initialState: NoteState = {
-  notes: [],
-}
+// FOR TESTING
+import { noteData } from "./data/noteData"
+const initialState: NoteState = noteData
+// ~FOR TESTING
 
-// Reducer
-export const reducer = (
-  state = initialState,
-  action: NoteActionTypes
-): NoteState => {
-  switch (action.type) {
-    case ADD_NOTE:
-      return { notes: [...state.notes, action.payload] }
-    case SAVE_NOTE:
-    case CLOSE_NOTE:
-      const saveIndex = state.notes.findIndex(
-        (note) => note.id === action.payload.id
-      )
-      let notesArray = [...state.notes]
-      notesArray[saveIndex] = action.payload
-      return { notes: notesArray }
-    case DELETE_NOTE:
-      return { notes: state.notes.filter((note) => note.id !== action.meta.id) }
-    case LOAD_NOTES:
-    case OPEN_NOTE:
-    default:
-      return state
-  }
-}
+// const initialState: NoteState = {
+//   notes: [],
+// }
 
 // Action Creators
-export const loadNotes = (): NoteActionTypes => {
-  return { type: LOAD_NOTES }
-}
+export const loadNotes = createAction(LOAD_NOTES)
+export const openNote = createAction<Note>(OPEN_NOTE)
+export const addNote = createAction<Note>(ADD_NOTE)
+export const saveNote = createAction<Note>(SAVE_NOTE)
+export const closeNote = createAction<Note>(CLOSE_NOTE)
+export const deleteNote = createAction<string>(DELETE_NOTE)
 
-export const openNote = (note: Note): NoteActionTypes => {
-  return { type: OPEN_NOTE, payload: note }
-}
+// Reducer
+export const reducer = createReducer(initialState, (builder) => {
+  builder.addCase(loadNotes, (state) => state)
+  builder.addCase(openNote, (state) => state)
+  builder.addCase(addNote, (state, action: PayloadAction<Note>) => {
+    const note = action.payload
+    state.notes.push(note)
+  })
+  builder.addCase(saveNote, (state, action: PayloadAction<Note>) => {
+    state.notes = save(state, action.payload)
+  })
+  builder.addCase(closeNote, (state, action: PayloadAction<Note>) => {
+    state.notes = save(state, action.payload)
+  })
+  builder.addCase(deleteNote, (state, action: PayloadAction<string>) => {
+    const deleteId = action.payload
+    state.notes.filter((note) => note.id !== deleteId)
+  })
+})
 
-export const addNote = (note: Note): NoteActionTypes => {
-  return { type: ADD_NOTE, payload: note }
-}
-
-export const saveNote = (note: Note): NoteActionTypes => {
-  return { type: SAVE_NOTE, payload: note }
-}
-
-export const closeNote = (note: Note): NoteActionTypes => {
-  return { type: CLOSE_NOTE, payload: note }
-}
-
-export const deleteNote = (id: string): NoteActionTypes => {
-  return { type: DELETE_NOTE, meta: { id: id } }
+const save = (state: NoteState, payload: Note) => {
+  const saveIndex = state.notes.findIndex((note) => note.id === payload.id)
+  const notesArray = [...state.notes]
+  notesArray[saveIndex] = payload
+  return notesArray
 }
 
 export default reducer
