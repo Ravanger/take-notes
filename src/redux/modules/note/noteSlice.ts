@@ -13,7 +13,6 @@ const notesSlice = createSlice({
     loadNotes: (state) => {
       state.notes = noteData.notes
     },
-    openNote: (state) => state,
     addNote: (state, action: PayloadAction<Note>) => {
       const note = action.payload
       state.notes.push(note)
@@ -28,7 +27,7 @@ const notesSlice = createSlice({
     },
     deleteNote: (state, action: PayloadAction<string>) => {
       const deleteId = action.payload
-      state.notes.filter((note) => note.id !== deleteId)
+      state.notes = state.notes.filter((note) => note.id !== deleteId)
     },
   },
 })
@@ -38,7 +37,6 @@ const update = (state: NoteState, payload: Note) =>
 
 export const {
   loadNotes,
-  openNote,
   addNote,
   saveNote,
   closeNote,
