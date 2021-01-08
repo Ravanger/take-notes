@@ -6,11 +6,12 @@ import reportWebVitals from "./reportWebVitals"
 import * as serviceWorker from "./serviceWorker"
 import store from "src/redux/store"
 
-import "./reset.css"
+import GlobalStyle from "./globalStyles"
 import App from "./App"
 
 ReactDOM.render(
   <StrictMode>
+    <GlobalStyle />
     <Provider store={store}>
       <App />
     </Provider>
