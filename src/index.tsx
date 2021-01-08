@@ -4,7 +4,7 @@ import { Provider } from "react-redux"
 
 import reportWebVitals from "./reportWebVitals"
 import * as serviceWorker from "./serviceWorker"
-import store from "@redux/store"
+import store from "src/redux/store"
 
 import "./reset.css"
 import App from "./App"

@@ -1,4 +1,4 @@
-import { NoteState } from "../types"
+import { NoteState } from "../noteTypes"
 
 export const noteData: NoteState = {
   notes: [
@@ -44,3 +44,5 @@ export const noteData: NoteState = {
     },
   ],
 }
+
+export default noteData

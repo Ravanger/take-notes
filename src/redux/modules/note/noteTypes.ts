@@ -8,3 +8,7 @@ export interface Note {
 export interface NoteState {
   notes: Note[]
 }
+
+export interface RootState {
+  noteReducer: NoteState
+}
