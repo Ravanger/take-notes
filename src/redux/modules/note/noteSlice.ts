@@ -18,12 +18,10 @@ const notesSlice = createSlice({
       state.notes.push(note)
     },
     saveNote: (state, action: PayloadAction<Note>) => {
-      const note = action.payload
-      state.notes = update(state, note)
-    },
-    closeNote: (state, action: PayloadAction<Note>) => {
-      const note = action.payload
-      state.notes = update(state, note)
+      const newNote = action.payload
+      state.notes = state.notes.map((oldNote) =>
+        oldNote.id === newNote.id ? newNote : oldNote
+      )
     },
     deleteNote: (state, action: PayloadAction<string>) => {
       const deleteId = action.payload
@@ -32,15 +30,6 @@ const notesSlice = createSlice({
   },
 })
 
-const update = (state: NoteState, payload: Note) =>
-  state.notes.map((note) => (note.id === payload.id ? payload : note))
-
-export const {
-  loadNotes,
-  addNote,
-  saveNote,
-  closeNote,
-  deleteNote,
-} = notesSlice.actions
+export const { loadNotes, addNote, saveNote, deleteNote } = notesSlice.actions
 
 export default notesSlice.reducer

@@ -1,19 +1,19 @@
-import { useDispatch } from "react-redux"
-import { Note } from "src/redux/modules/note/noteTypes"
-import { loadNotes, deleteNote } from "src/redux/modules/note/noteSlice"
-
-import { DivNoteCard } from "./styles"
 import { useEffect } from "react"
+
+import { Note } from "src/redux/modules/note/noteTypes"
+import useNotesDispatch from "src/redux/modules/note/useNotesDispatch"
+import { DivNoteCard } from "./styles"
 
 interface NotesGridProps {
   notes: Note[]
 }
 
 const NotesGrid = (props: NotesGridProps) => {
-  const dispatch = useDispatch()
+  const { dispatchLoadNotes, dispatchDeleteNote } = useNotesDispatch()
+
   useEffect(() => {
-    dispatch(loadNotes())
-  }, [dispatch])
+    dispatchLoadNotes()
+  }, [dispatchLoadNotes])
 
   const isValid = props.notes && props.notes.length > 0
 
@@ -31,7 +31,7 @@ const NotesGrid = (props: NotesGridProps) => {
                 {note.text ? <p>{note.text}</p> : null}
                 <button
                   onClick={() => {
-                    dispatch(deleteNote(note.id))
+                    dispatchDeleteNote(note.id)
                   }}
                 >
                   Delete
