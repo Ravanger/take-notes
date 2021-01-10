@@ -4,7 +4,7 @@ export const DivNoteCard = styled.div`
   background-color: ${(props) => props.color || "revert"};
 `
 
-export const DivBlurredBackground = styled.div`
+export const DivDimBackground = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;

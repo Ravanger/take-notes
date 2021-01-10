@@ -1,11 +1,11 @@
 import { CardProps } from "./types"
-import { DivBlurredBackground } from "./styles"
+import { DivDimBackground } from "./styles"
 
 export const ExpandedCard = (props: CardProps) => {
   return (
-    <DivBlurredBackground onClick={props.closeCard}>
-      {props.noteData.title}
-    </DivBlurredBackground>
+    <DivDimBackground onClick={props.closeCard}>
+      <div>{props.noteData.title}</div>
+    </DivDimBackground>
   )
 }
 
