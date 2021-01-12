@@ -4,7 +4,9 @@ import { DivDimBackground } from "./styles"
 export const ExpandedCard = (props: CardProps) => {
   return (
     <DivDimBackground onClick={props.closeCard}>
-      <div>{props.noteData.title}</div>
+      <div onClick={(event) => event.stopPropagation()}>
+        {props.noteData.title}
+      </div>
     </DivDimBackground>
   )
 }
