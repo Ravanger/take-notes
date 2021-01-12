@@ -8,7 +8,7 @@ import { ExpandedCard } from "./ExpandedCard"
 
 const NotesGrid = (props: NotesGridProps) => {
   const [openNote, setOpenNote] = useState<Note | undefined>(undefined)
-  const { dispatchLoadNotes, dispatchDeleteNote } = useNotesDispatch()
+  const { dispatchLoadNotes } = useNotesDispatch()
 
   useEffect(() => {
     dispatchLoadNotes()
@@ -30,14 +30,6 @@ const NotesGrid = (props: NotesGridProps) => {
             >
               <h2>{note.title}</h2>
               {note.text ? <p>{note.text}</p> : null}
-              <button
-                onClick={(event) => {
-                  event.stopPropagation()
-                  dispatchDeleteNote(note.id)
-                }}
-              >
-                Delete
-              </button>
             </DivNoteCard>
           ))}
         </div>
