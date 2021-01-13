@@ -29,7 +29,9 @@ const NotesGrid = (props: NotesGridProps) => {
               }}
             >
               <h2>{note.title}</h2>
-              {note.text ? <p>{note.text}</p> : null}
+              {note.text && (
+                <p dangerouslySetInnerHTML={{ __html: note.text }} />
+              )}
             </DivNoteCard>
           ))}
         </div>
